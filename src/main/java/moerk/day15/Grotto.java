@@ -88,31 +88,34 @@ public class Grotto {
 
 	private Set<Point> getLocationsOfClosestOpponents( Warrior warrior ) {
 		Set<Point> beenThere = new HashSet<>();
-		Queue<Point> current = new LinkedList<>();
+		Set<Point> current;
+		Set<Point> next = new HashSet<>();
 		Set<Point> locations = new HashSet<>();
 
 		Point start = warriors.inverse().get( warrior );
 
 		beenThere.add( start );
+		next.add( start );
 
-		current.offer( start );
+		do {
+			current = next;
+			next = new HashSet<>();
 
-		//TODO Volgens mij vind je hier niet alle tegenstanders die even dichtbij zijn,
-		//maar toevallig diegene die het eerst gevonden wordt en dus niet in volgorde
-		//van de reading order
-		while ( !current.isEmpty() && locations.isEmpty() ) {
-			Point p = current.poll();
-			for ( Point n : neighbours.get( p ) ) {
-				if ( beenThere.add( n ) && map[n.x][n.y].passable() ) {
-					if ( isNeighbourOfEnemy( n, warrior ) ) {
-						locations.add( n );
-					}
-					else {
-						current.offer( n );
+			for ( Point p : current ) {
+				for ( Point n : neighbours.get( p ) ) {
+					if ( beenThere.add( n ) && map[n.x][n.y].passable() ) {
+						if ( isNeighbourOfEnemy( n, warrior ) ) {
+							locations.add( n );
+						}
+						else {
+							next.add( n );
+						}
 					}
 				}
 			}
+
 		}
+		while ( locations.isEmpty() && !next.isEmpty() );
 
 		return locations;
 	}
@@ -135,25 +138,31 @@ public class Grotto {
 		}
 
 		Set<Point> beenThere = new HashSet<>();
-		Queue<Point> current = new LinkedList<>();
+		Set<Point> current;
+		Set<Point> next = new HashSet<>();
 		Set<Point> locations = new HashSet<>();
 
 		beenThere.add( closest );
-		current.offer( closest );
+		next.add( closest );
 
-		while ( !current.isEmpty() && locations.isEmpty() ) {
-			Point p = current.poll();
-			for ( Point n : neighbours.get( p ) ) {
-				if ( beenThere.add( n ) && map[n.x][n.y].passable() ) {
-					if ( nextSteps.contains( n ) ) {
-						locations.add( n );
-					}
-					else {
-						current.offer( n );
+		do {
+			current = next;
+			next = new HashSet<>();
+
+			for ( Point p : current ) {
+				for ( Point n : neighbours.get( p ) ) {
+					if ( beenThere.add( n ) && map[n.x][n.y].passable() ) {
+						if ( nextSteps.contains( n ) ) {
+							locations.add( n );
+						}
+						else {
+							next.add( n );
+						}
 					}
 				}
 			}
 		}
+		while ( locations.isEmpty() && !next.isEmpty() );
 
 		return locations;
 	}
