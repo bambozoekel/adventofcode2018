@@ -17,12 +17,6 @@ public enum Wall implements Entity {
 	}
 
 	@Override
-	public void hit() {
-		throw new RuntimeException( "Don't hit the wall!" );
-	}
-
-
-	@Override
 	public String toString() {
 		return "#";
 	}}

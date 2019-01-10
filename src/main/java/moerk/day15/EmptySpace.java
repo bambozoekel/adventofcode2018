@@ -17,12 +17,7 @@ public enum EmptySpace implements Entity {
 	}
 
 	@Override
-	public void hit() {
-		throw new RuntimeException("Don't attack the void!" );
-	}
-
-
-	@Override
 	public String toString() {
 		return ".";
-	}}
+	}
+}

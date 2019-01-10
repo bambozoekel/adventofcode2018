@@ -8,8 +8,7 @@ import java.util.List;
  * @author matthias
  */
 public class GrottoReader {
-	public Grotto read() {
-		EntityFactory factory = new EntityFactory();
+	public Grotto read( EntityFactory factory ) {
 		List<String> lines = Util.lines( "day15/map.txt" );
 
 		Grotto grotto = new Grotto( lines.get( 0 ).length(), lines.size() );

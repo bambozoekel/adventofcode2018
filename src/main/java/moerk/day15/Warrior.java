@@ -5,9 +5,11 @@ package moerk.day15;
  */
 public abstract class Warrior implements Entity {
 	private int hitPoints;
+	private final int attack;
 
-	protected Warrior() {
+	Warrior( int attack ) {
 		hitPoints = 200;
+		this.attack = attack;
 	}
 
 	@Override
@@ -15,9 +17,8 @@ public abstract class Warrior implements Entity {
 		return false;
 	}
 
-	@Override
-	public void hit() {
-		hitPoints -= 3;
+	public void attack( Warrior enemy ) {
+		enemy.hitPoints -= attack;
 	}
 
 	public boolean isDead() {

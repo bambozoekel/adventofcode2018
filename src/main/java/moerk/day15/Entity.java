@@ -6,5 +6,4 @@ package moerk.day15;
 public interface Entity {
 	boolean passable();
 	boolean isEnemy( Entity entity );
-	void hit();
 }
