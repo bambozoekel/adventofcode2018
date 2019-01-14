@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
  */
 public class Device {
 	private final List<Register> registers;
+	private Program program;
 
 	private int instructionPointer;
 	private Register instructionPointerRegister;
@@ -36,14 +37,12 @@ public class Device {
 		}
 	}
 
-	public void execute( Program program ) {
+	public void load( Program program ) {
+		this.program = program;
+		registers.forEach( r -> r.setValue( 0 ) );
+
 		instructionPointer = 0;
 		instructionPointerRegister = determineInstructionPointerRegister( program );
-
-		System.out.println( instructionPointer + " " + getState() );
-		while ( instructionPointer < program.getInstructionCount() ) {
-			handleInstruction( program.getInstruction( instructionPointer ) );
-		}
 	}
 
 	private Register determineInstructionPointerRegister( Program program ) {
@@ -55,12 +54,29 @@ public class Device {
 		}
 	}
 
+	public int getInstructionPointer() {
+		return instructionPointer;
+	}
+
+	public void step() {
+		handleInstruction( program.getInstruction( instructionPointer ) );
+	}
+
+	public boolean isProgramRunning() {
+		return instructionPointer < program.getInstructionCount();
+	}
+
+	public void runProgram() {
+		while ( isProgramRunning() ) {
+			step();
+		}
+	}
+
 	private void handleInstruction( Instruction instruction ) {
 		instructionPointerRegister.setValue( instructionPointer );
 		execute( instruction );
 		instructionPointer = instructionPointerRegister.getValue();
 		instructionPointer++;
-		System.out.println( instructionPointer + " " + getState() );
 	}
 
 	private void execute( Instruction instruction ) {

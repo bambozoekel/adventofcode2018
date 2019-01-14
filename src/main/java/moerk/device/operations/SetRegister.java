@@ -11,4 +11,9 @@ public class SetRegister implements Operation {
 	public int apply( Device device, int a, int b ) {
 		return device.getValue( a );
 	}
+
+	@Override
+	public String toString() {
+		return "setr";
+	}
 }

@@ -11,4 +11,9 @@ public class BitWiseAndImmediate implements Operation {
 	public int apply( Device device, int a, int b ) {
 		return device.getValue( a ) & b;
 	}
+
+	@Override
+	public String toString() {
+		return "bani";
+	}
 }

@@ -11,4 +11,9 @@ public class SetImmediate implements Operation {
 	public int apply( Device device, int a, int b ) {
 		return a;
 	}
+
+	@Override
+	public String toString() {
+		return "seti";
+	}
 }

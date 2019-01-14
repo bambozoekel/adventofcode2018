@@ -20,7 +20,8 @@ public class ExecuteProgram {
 		Program program = new ProgramReader().read( operations );
 
 		Device device = new Device( 4 );
-		device.execute( program );
+		device.load( program );
+		device.runProgram();
 		System.out.println( device.getValue( 0 ) );
 	}
 }

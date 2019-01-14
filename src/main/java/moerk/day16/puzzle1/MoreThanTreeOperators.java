@@ -57,7 +57,8 @@ public class MoreThanTreeOperators {
 			int match = 0;
 			for ( Operation operation : operations ) {
 				device.setValues( sample.getBefore() );
-				device.execute( new Program( operation, sample.getInstruction().subList( 1, 4 ) ) );
+				device.load( new Program( operation, sample.getInstruction().subList( 1, 4 ) ) );
+				device.runProgram();
 				match += device.getState().equals( sample.getAfter() ) ? 1 : 0;
 			}
 

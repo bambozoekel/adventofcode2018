@@ -11,4 +11,9 @@ public class GreaterThanImmediateRegister implements Operation {
 	public int apply( Device device, int a, int b ) {
 		return a > device.getValue( b ) ? 1 : 0;
 	}
+
+	@Override
+	public String toString() {
+		return "gtir";
+	}
 }

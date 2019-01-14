@@ -1,4 +1,4 @@
-package moerk.day19;
+package moerk.device;
 
 import com.google.common.collect.ImmutableMap;
 import moerk.Util;
@@ -50,8 +50,7 @@ public class ProgramReader {
 		.put("eqrr", new EqualsRegisterRegister())
 		.build();
 
-	public Program read() {
-		List<String> lines = Util.lines( "day19/program.txt" );
+	public Program read( List<String> lines ) {
 		int ipRegisterIndex = Integer.parseInt( lines.get( 0 ).substring( 4 ) );
 
 		List<Instruction> instructions = lines.stream()

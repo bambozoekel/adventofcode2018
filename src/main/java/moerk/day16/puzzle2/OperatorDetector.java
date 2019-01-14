@@ -59,7 +59,8 @@ public class OperatorDetector {
 
 				for ( Operation operation : operations ) {
 					device.setValues( sample.getBefore() );
-					device.execute( new Program( operation, sample.getInstruction().subList( 1, 4 ) ) );
+					device.load( new Program( operation, sample.getInstruction().subList( 1, 4 ) ) );
+					device.runProgram();
 					if ( device.getState().equals( sample.getAfter() ) ) {
 						matches.add( operation );
 					}

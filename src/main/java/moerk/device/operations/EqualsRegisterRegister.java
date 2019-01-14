@@ -11,4 +11,9 @@ public class EqualsRegisterRegister implements Operation {
 	public int apply( Device device, int a, int b ) {
 		return device.getValue( a ) == device.getValue( b ) ? 1 : 0;
 	}
+
+	@Override
+	public String toString() {
+		return "eqrr";
+	}
 }
