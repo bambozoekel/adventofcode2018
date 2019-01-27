@@ -37,6 +37,10 @@ public class Party {
 		return groups.stream().mapToInt( Group::getUnits ).sum();
 	}
 
+	public void setBoost( int boost ) {
+		groups.forEach( g -> g.setBoost( boost ) );
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper( this )

@@ -1,4 +1,4 @@
-package moerk.day24.puzzle1;
+package moerk.day24;
 
 import com.google.common.collect.Streams;
 import moerk.day24.Fight;
@@ -38,6 +38,10 @@ public class FightAssembler {
 			.peek( f -> System.out.println( "Selected enemy: " + f.getDefender().getParty().getName() + " " + f.getDefender().getIndex() ) )
 			.peek( f -> System.out.println( "---------------" ) )
 			.forEach( fights::add );
+
+		if ( fights.isEmpty() ) {
+			throw new IllegalStateException();
+		}
 
 		return fights;
 	}

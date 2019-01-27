@@ -20,9 +20,10 @@ public class Fight {
 		return defender;
 	}
 
-	public void fight() {
+	public boolean fight() {
 		int defenderUnits = defender.getUnits();
 		defender.takeAttack( attacker.getDamage( defender ) );
 		System.out.println( attacker.getParty().getName() + " " + attacker.getIndex() + " attacks " + defender.getParty().getName() + " " + defender.getIndex() + ": " + defenderUnits + " -> " + defender.getUnits() );
+		return defenderUnits != defender.getUnits();
 	}
 }

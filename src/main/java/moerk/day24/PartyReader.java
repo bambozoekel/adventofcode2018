@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author matthias
  */
 public class PartyReader {
-	private static final String RESOURCE = "day24/test.txt";
+	private static final String RESOURCE = "day24/groups.txt";
 
 	private static final String ATTACK_TYPES = "radiation|cold|fire|bludgeoning|slashing";
 	private static final Pattern PATTERN = Pattern.compile( "(\\d+) units each with (\\d+) hit points(?: \\((immune|weak) to ((?:" + ATTACK_TYPES + ")(?:, (?:" + ATTACK_TYPES + "))*)(?:; (immune|weak) to ((?:" + ATTACK_TYPES + ")(?:, (?:" + ATTACK_TYPES + "))*))?\\))? with an attack that does (\\d+) (" + ATTACK_TYPES + ") damage at initiative (\\d+)" );

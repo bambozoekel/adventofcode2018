@@ -17,6 +17,7 @@ public class Group {
 	private final Set<AttackType> weaknesses;
 	private final AttackType attackType;
 	private int units;
+	private int boost;
 
 	public Group( GroupConfiguration configuration ) {
 		party = configuration.getParty();
@@ -61,8 +62,12 @@ public class Group {
 		return units > 0;
 	}
 
+	public void setBoost( int boost ) {
+		this.boost = boost;
+	}
+
 	public int getEffectivePower() {
-		return units * attackDamage;
+		return units * (attackDamage + boost);
 	}
 
 	public int getDamage( Group enemy ) {
